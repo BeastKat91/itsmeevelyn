@@ -3,16 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title> </title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS is safely trapped right here so it can't run away */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+        }
+
+        #soundImage {
+            width: auto;
+            height: auto;
+            cursor: pointer; /* This forces the hand cursor */
+        }
+
+        #soundImage:active {
+            transform: scale(0.95);
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Our clickable victim -->
-    <img id="soundImage" src="eyes.png">
+    <!-- Put a real image link or local filename here -->
+    <img id="soundImage" src="eyes.png" alt="Click me">
 
-    <!-- The audio file hiding in plain sight -->
+    <!-- Put a real MP3 link or local filename here -->
     <audio id="myAudio" src="eyes.mp3"></audio>
 
-    <script src="script.js"></script>
+    <script>
+        // JavaScript is locked and loaded right here
+        const image = document.getElementById('soundImage');
+        const audio = document.getElementById('myAudio');
+
+        image.addEventListener('click', function() {
+            audio.currentTime = 0; 
+            audio.play().catch(error => {
+                console.log("Browser said no: ", error);
+            });
+        });
+    </script>
+
 </body>
 </html>
